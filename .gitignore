@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+#core date
+/utils/config.ts
+
 # testing
 /coverage
 

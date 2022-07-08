@@ -1,0 +1,11 @@
+@mixin linear {
+  background: linear-gradient(94.59deg, #69ABCD 4.1%, #7294D9 17.94%, #B369C4 36.72%, #E37791 56%, #F89C64 82.19%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+@mixin linear-bg {
+  background: linear-gradient(94.59deg, #69ABCD 4.1%, #7294D9 25.35%, #B369C4 49.57%, #E37791 65.88%, #F89C64 88.62%);
+}
