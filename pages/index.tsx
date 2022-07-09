@@ -19,13 +19,7 @@ const Home: NextPage<Rodemap> = ({ v }) => {
         <PC />
       </RodemapCtx.Provider>
 
-      <div className={styles.footer}
-        onClick={() => {
-          axios.get('/api/get').then((e) => {
-            console.log(e)
-          })
-        }}
-      >
+      <div className={styles.footer}>
         Powered by Kmy
         <br />
         Github: https://github.com/wxd56987/bike

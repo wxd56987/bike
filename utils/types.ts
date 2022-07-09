@@ -7,7 +7,8 @@ export interface uploadType {
 export interface BikeDateType {
   folder: string,
   name: string,
-  date: string
+  date: string,
+  icon: string,
 }
 
 export interface RoadmapItemType {

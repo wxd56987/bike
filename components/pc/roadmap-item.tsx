@@ -1,24 +1,26 @@
 import { FC, ChangeEvent, useContext, useState } from "react";
-import Image from "next/image";
 import styles from '../../styles/index.module.scss'
 import Upload from "./upload";
 import { heicToJpg, formatBikeDaydate } from "../../utils/tools";
 import { uploadType, BikeDateType, RoadmapItemType } from "../../utils/types"
 import axios from "axios";
-import { message } from "antd";
+import { message, Image } from "antd";
 import RodemapCtx from '../../hooks/use-roadmao-content'
 
 
 type Props = {
-  folderItem: BikeDateType
+  folderItem: BikeDateType,
+  handleImgShow: (folder: string, current: number) => void
 }
 
-const RoadmapItem: FC<Props> = ({ folderItem }) => {
+const RoadmapItem: FC<Props> = ({ folderItem, handleImgShow }) => {
 
   const { v } = useContext(RodemapCtx)
   const [imgList, setImgList] = useState<RoadmapItemType[]>(formatBikeDaydate(v, folderItem.folder))
+  const [loading, setLoading] = useState(false)
 
   const handleUploadImg = (e: ChangeEvent<HTMLInputElement>) => {
+    setLoading(true)
     var reader = new FileReader();
     const { folder } = folderItem;
     if (e.target.files && e.target.files[0]) {
@@ -31,6 +33,7 @@ const RoadmapItem: FC<Props> = ({ folderItem }) => {
         // 计算大小
         if (file.size / 1024 / 1024 > 50) {
           message.info('图片不能大于50M')
+          setLoading(false)
           return
         }
         const url = reader.result as string
@@ -52,12 +55,14 @@ const RoadmapItem: FC<Props> = ({ folderItem }) => {
       url: '/api/up',
       data,
     }).then((e) => {
+      setLoading(false)
+      message.success('上传成功')
       setImgList((prev) => {
-        prev.push({
+        const arrCopy = prev.slice();
+        arrCopy.push({
           name: data.key,
           img: data.url
         })
-        const arrCopy = prev.slice();
         return arrCopy;
       });
     })
@@ -67,12 +72,18 @@ const RoadmapItem: FC<Props> = ({ folderItem }) => {
     <div className={styles.roadmapItem}>
       <div className={styles.left}>
         <div className={styles.tip} onClick={() => {
-        }}>{folderItem.date} 🚴🏻 {folderItem.name}</div>
+        }}>{folderItem.date} {folderItem.icon} {folderItem.name}</div>
       </div>
       <div className={styles.right}>
         {
           imgList.map((item, index) => (
-            <div className={styles.imgBox} key={index}>
+            <div
+              className={styles.imgBox}
+              key={index}
+              onClick={() => {
+                // handleImgShow(folderItem.folder, index)
+              }}
+            >
               <Image
                 src={item.img} alt=""
                 width={300}
@@ -81,9 +92,16 @@ const RoadmapItem: FC<Props> = ({ folderItem }) => {
             </div>
           ))
         }
-        <Upload
-          handleUploadImg={handleUploadImg}
-        />
+        {
+          !loading && imgList.length <= 18
+            ?
+            <Upload
+              handleUploadImg={handleUploadImg}
+            />
+            :
+            null
+        }
+
       </div>
     </div>
   );
