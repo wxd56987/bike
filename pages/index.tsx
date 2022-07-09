@@ -1,4 +1,4 @@
-import type { NextPage, GetStaticProps } from 'next'
+import type { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import styles from '../styles/index.module.scss'
 import PC from '../components/pc'
@@ -28,7 +28,7 @@ const Home: NextPage<Rodemap> = ({ v }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const url = ApiStart(process.env.NEXT_PUBLIC_DOMAIN_ENV as string)
   const { data: { v } } = await axios.get(`${url}/api/get`);
   return {
