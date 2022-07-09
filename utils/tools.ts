@@ -37,7 +37,7 @@ enum ApiEnum {
 }
 
 export const ApiStart = (env: string): string => {
-  return ApiEnum[0] === env ? 'http://localhost:3000' : ''
+  return ApiEnum[0] === env ? 'http://localhost:3000' : 'http://118.195.193.196:3000'
 }
 
 export const formatBikeDaydate = (data: RoadmapItemType[], folder: string): RoadmapItemType[] => {
