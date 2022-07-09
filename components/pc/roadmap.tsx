@@ -8,7 +8,7 @@ type Props = {
 
 const Roadmap: FC<Props> = ({ children }) => {
 
-  const [lineHeight, setLineHeight] = useState(BikeDate.length * 2 * 200)
+  const [lineHeight, setLineHeight] = useState(BikeDate.length * 2 * 200 + 1000)
 
   return (
     <div className={styles.roadmap}>

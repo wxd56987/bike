@@ -20,7 +20,7 @@ const Home: NextPage<Rodemap> = ({ v }) => {
       </RodemapCtx.Provider>
 
       <div className={styles.footer}>
-        Powered by Kmy
+        Powered by @Kmy
         <br />
         Github: https://github.com/wxd56987/bike
       </div>

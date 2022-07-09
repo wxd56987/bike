@@ -30,7 +30,7 @@ const PC: FC = () => {
 
   return (
     <div className={styles.PC}>
-      <div className={styles.title}>风林火山骑行团 | 总活动 {v.length} 次</div>
+      <div className={styles.title}>风林火山骑行团 | 总活动 {BikeDate.length} 次</div>
       <Roadmap>
         {
           BikeDate.map((item, index) => (
