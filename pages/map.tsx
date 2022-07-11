@@ -1,7 +1,7 @@
 import type { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import styles from '../styles/index.module.scss'
-import { Rodemap } from '../utils/types'
+import { Rodemap, RoadmapItemType } from '../utils/types'
 import axios from 'axios'
 import MapItem from '../components/pc/map-item'
 import MapList from '../components/pc/map-list'
@@ -9,11 +9,12 @@ import { useState, ChangeEvent, useEffect } from 'react'
 import { Modal, Image, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons'
 import { heicToJpg } from "../utils/tools";
-import { uploadType, MapListType } from "../utils/types"
+import { uploadType, MapListType, MapType } from "../utils/types"
 import { UrlStart } from '../utils/config'
 import Nav from '../components/nav'
+import { ApiStart } from '../utils/tools'
 
-const Map: NextPage<Rodemap> = () => {
+const Map: NextPage<MapType> = ({ v }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [imgl, setImgl] = useState('');
   const [img, setImg] = useState('');
@@ -23,7 +24,7 @@ const Map: NextPage<Rodemap> = () => {
   const [dec, setDec] = useState('');
   const [distance, setDistance] = useState('');
   const [title, setTitle] = useState('');
-  const [mapList, setMapList] = useState<MapListType[]>([]);
+  const [mapList, setMapList] = useState<MapListType[]>(v);
 
   const handleResetInfo = () => {
     setImgl('')
@@ -102,12 +103,6 @@ const Map: NextPage<Rodemap> = () => {
       }
     })
   }
-
-  useEffect(() => {
-    if (!mapList.length) {
-      getMapInfo()
-    }
-  }, [mapList])
 
   const getMapInfo = () => {
     axios({
@@ -291,5 +286,15 @@ const Map: NextPage<Rodemap> = () => {
     </div>
   )
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const url = ApiStart(process.env.NEXT_PUBLIC_DOMAIN_ENV as string)
+  const { data: { map } } = await axios.get(`${url}/api/get-map`);
+  return {
+    props: {
+      v: map
+    },
+  };
+};
 
 export default Map

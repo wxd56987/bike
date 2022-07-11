@@ -29,3 +29,7 @@ export interface MapListType {
   distance: string,
   decs: string
 }
+
+export interface MapType {
+  v: MapListType[]
+}
