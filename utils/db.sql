@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS `bike_map`(
+   `map_id` INT UNSIGNED AUTO_INCREMENT,
+   `title` VARCHAR(100) NOT NULL,
+   `star` INT NOT NULL,
+   `start` VARCHAR(100) NOT NULL,
+   `end` VARCHAR(100) NOT NULL,
+   `img` VARCHAR(100) NOT NULL,
+   `distance` VARCHAR(100) NOT NULL,
+   `dec` VARCHAR(1000) NOT NULL,
+   PRIMARY KEY ( `map_id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

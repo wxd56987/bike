@@ -6,6 +6,7 @@ import RodemapCtx from '../hooks/use-roadmao-content'
 import { Rodemap } from '../utils/types'
 import axios from 'axios'
 import { ApiStart } from '../utils/tools'
+import Nav from '../components/nav'
 
 const Home: NextPage<Rodemap> = ({ v }) => {
   return (
@@ -18,6 +19,8 @@ const Home: NextPage<Rodemap> = ({ v }) => {
       <RodemapCtx.Provider value={{ v }}>
         <PC />
       </RodemapCtx.Provider>
+
+      <Nav isactive />
 
       <div className={styles.footer}>
         Powered by @Kmy

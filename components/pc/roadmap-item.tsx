@@ -7,7 +7,6 @@ import axios from "axios";
 import { message, Image } from "antd";
 import RodemapCtx from '../../hooks/use-roadmao-content'
 
-
 type Props = {
   folderItem: BikeDateType,
   handleImgShow: (folder: string, current: number) => void

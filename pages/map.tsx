@@ -5,14 +5,17 @@ import { Rodemap } from '../utils/types'
 import axios from 'axios'
 import MapItem from '../components/pc/map-item'
 import MapList from '../components/pc/map-list'
-import { useState, ChangeEvent } from 'react'
+import { useState, ChangeEvent, useEffect } from 'react'
 import { Modal, Image, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons'
-import { heicToJpg, formatBikeDaydate } from "../utils/tools"; import { uploadType, BikeDateType, RoadmapItemType } from "../utils/types"
+import { heicToJpg } from "../utils/tools";
+import { uploadType, MapListType } from "../utils/types"
 import { UrlStart } from '../utils/config'
+import Nav from '../components/nav'
 
 const Map: NextPage<Rodemap> = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [imgl, setImgl] = useState('');
   const [img, setImg] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
@@ -20,15 +23,18 @@ const Map: NextPage<Rodemap> = () => {
   const [dec, setDec] = useState('');
   const [distance, setDistance] = useState('');
   const [title, setTitle] = useState('');
+  const [mapList, setMapList] = useState<MapListType[]>([]);
 
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
+  const handleResetInfo = () => {
+    setImgl('')
+    setImg('')
+    setStart('')
+    setEnd('')
+    setStar(0)
+    setDec('')
+    setDistance('')
+    setTitle('')
+  }
 
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -70,6 +76,45 @@ const Map: NextPage<Rodemap> = () => {
     }).then((e) => {
       message.success('上传成功')
       setImg(`${UrlStart}map/${data.key}`);
+      setImgl(data.url)
+    })
+  }
+
+  const up = () => {
+    axios({
+      method: 'post',
+      url: '/api/upload-map',
+      data: {
+        img,
+        star,
+        start,
+        title,
+        end,
+        distance,
+        dec
+      }
+    }).then((e) => {
+      console.log(e)
+      if (e.status === 200) {
+        message.info('上传成功！')
+        setIsModalVisible(false);
+        getMapInfo()
+      }
+    })
+  }
+
+  useEffect(() => {
+    if (!mapList.length) {
+      getMapInfo()
+    }
+  }, [mapList])
+
+  const getMapInfo = () => {
+    axios({
+      method: 'get',
+      url: `/api/get-map`,
+    }).then((e) => {
+      setMapList(e.data.map)
     })
   }
 
@@ -106,23 +151,7 @@ const Map: NextPage<Rodemap> = () => {
       message.info('请填写路线详细')
       return
     }
-
-    console.log(img, star, start, end, distance, dec)
-    axios({
-      method: 'post',
-      url: '/api/upload-map',
-      data: {
-        img,
-        star,
-        start,
-        title,
-        end,
-        distance,
-        dec
-      }
-    }).then((e) => {
-      console.log(e)
-    })
+    up()
   }
 
   return (
@@ -136,6 +165,7 @@ const Map: NextPage<Rodemap> = () => {
         <div className={styles.title}>风林火山骑行团 | NICE路线推荐</div>
         <div className={styles.recommend}
           onClick={() => {
+            handleResetInfo()
             setIsModalVisible(true)
           }}
         >
@@ -150,7 +180,7 @@ const Map: NextPage<Rodemap> = () => {
             <div className={styles.left}>路线图片:</div>
             <div className={styles.right}>
               {
-                !img
+                !imgl
                   ?
                   <>
                     <input
@@ -163,7 +193,7 @@ const Map: NextPage<Rodemap> = () => {
                   </>
                   :
                   <Image
-                    src={img}
+                    src={imgl}
                     alt=''
                     className={styles.mapUpBoxImg}
                   ></Image>
@@ -173,7 +203,9 @@ const Map: NextPage<Rodemap> = () => {
           <div className={styles.mapFormItem}>
             <div className={styles.left}>路线名称:</div>
             <div className={styles.right}>
-              <input type="text"
+              <input
+                type="text"
+                value={title}
                 onChange={(e) => {
                   setTitle(e.target.value)
                 }}
@@ -183,7 +215,9 @@ const Map: NextPage<Rodemap> = () => {
           <div className={styles.mapFormItem}>
             <div className={styles.left}>推荐指数:</div>
             <div className={styles.right}>
-              <input type="number"
+              <input
+                type="number"
+                value={star}
                 onChange={(e) => {
                   setStar(+e.target.value)
                 }}
@@ -193,7 +227,9 @@ const Map: NextPage<Rodemap> = () => {
           <div className={styles.mapFormItem}>
             <div className={styles.left}>路线起点:</div>
             <div className={styles.right}>
-              <input type="text"
+              <input
+                type="text"
+                value={start}
                 onChange={(e) => {
                   setStart(e.target.value)
                 }}
@@ -203,7 +239,9 @@ const Map: NextPage<Rodemap> = () => {
           <div className={styles.mapFormItem}>
             <div className={styles.left}>路线终点:</div>
             <div className={styles.right}>
-              <input type="text"
+              <input
+                type="text"
+                value={end}
                 onChange={(e) => {
                   setEnd(e.target.value)
                 }}
@@ -213,7 +251,9 @@ const Map: NextPage<Rodemap> = () => {
           <div className={styles.mapFormItem}>
             <div className={styles.left}>全程距离:</div>
             <div className={styles.right}>
-              <input type="number"
+              <input
+                type="number"
+                value={distance}
                 onChange={(e) => {
                   setDistance(e.target.value)
                 }} />
@@ -224,6 +264,7 @@ const Map: NextPage<Rodemap> = () => {
             <div className={styles.right}>
               <textarea
                 placeholder='路线详细，注意事项等'
+                value={dec}
                 onChange={(e) => {
                   setDec(e.target.value)
                 }} />
@@ -231,9 +272,16 @@ const Map: NextPage<Rodemap> = () => {
           </div>
         </Modal>
         <MapList>
-          <MapItem />
+          {
+            mapList.map((item, index) => (
+              <MapItem key={index} info={item} />
+            ))
+          }
+
         </MapList>
       </div>
+
+      <Nav isactive={false} />
 
       <div className={styles.footer}>
         Powered by @Kmy

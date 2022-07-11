@@ -152,47 +152,70 @@
     scrollbar-width: none;
     position: relative;
     padding: 0 15%;
+    display: flex;
+    flex-wrap: wrap;
     .mapItem {
-      width: 200px;
-      margin-right: 10px;
-      height: 600px;
+      margin-bottom: 30px;
       position: relative;
       display: flex;
       justify-content: flex-start;
       .left {
         margin-right: 30px;
-        width: 300px;
+        width: 240px;
+        height: 300px;
         border-radius: 10px;
-      }
-      .right {
-        display: flex;
-        flex-direction: column;
-        color: #fff;
-        align-items: flex-start;
-        justify-content: flex-start;
-        .mptitle {
+        overflow: hidden;
+        position: relative;
+        .leftImg {
           width: 100%;
-          font-size: 20px;
-          @include linear;
-          margin-bottom: 10px;
+          height: 100%;
         }
-        .tag {
+        .top {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
           display: flex;
-          justify-content: flex-start;
           align-items: center;
-          margin-bottom: 5px;
-          p {
-            margin-bottom: 0;
-            margin-top: 0;
+          justify-content: space-between;
+          padding: 6px;
+          background: rgba(0, 0, 0, 0.7);
+          .mptitle {
+            flex: 1;
+            margin-right: 6px;
+            font-size: 20px;
+            @include linear;
           }
           .star {
             display: flex;
             justify-content: flex-start;
             align-items: center;
+            flex-shrink: 0;
           }
         }
-        .road {
-          margin-bottom: 30px;
+        .bottom {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          padding: 6px;
+          background: rgba(0, 0, 0, 0.7);
+          color: #fff;
+          .road {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+          }
+          .distance {
+            font-size: 12px;
+            margin: 4px 0;
+          }
+          .dec {
+            font-size: 12px;
+            line-height: 22px;
+          }
         }
       }
     }
@@ -201,7 +224,7 @@
     position: absolute;
     width: 100px;
     height: 40px;
-    right: 100px;
+    right: 20px;
     top: 250px;
     background-color: #fff;
     display: flex;
@@ -271,6 +294,25 @@
       width: 100px;
       height: 100px;
       border-radius: 10px;
+    }
+  }
+}
+
+.nav {
+  position: fixed;
+  right: 20px;
+  bottom: 200px;
+  .navBtn {
+    padding: 4px 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color: #000;
+    cursor: pointer;
+    background: #fff;
+    &.navBtnA {
+      color: #fff;
+      @include linear-bg;
     }
   }
 }

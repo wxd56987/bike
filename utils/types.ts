@@ -19,3 +19,13 @@ export interface RoadmapItemType {
 export interface Rodemap {
   v: RoadmapItemType[]
 }
+
+export interface MapListType {
+  img: string,
+  star: string,
+  start: string,
+  title: string,
+  end: string,
+  distance: string,
+  decs: string
+}
