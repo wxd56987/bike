@@ -43,7 +43,7 @@ export const ApiStart = (env: string): string => {
 export const formatBikeDaydate = (data: RoadmapItemType[], folder: string): RoadmapItemType[] => {
   const arr: RoadmapItemType[] = []
   data.forEach((item) => {
-    if (item.name.includes(folder) && item.name.substr(item.name.length - 1, 1) !== '/') {
+    if (item.name.includes(`${folder}/`) && item.name.substr(item.name.length - 1, 1) !== '/') {
       arr.push(item)
     }
   })

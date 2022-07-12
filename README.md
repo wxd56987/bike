@@ -23,14 +23,11 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 环千岛湖:
 - ![千岛湖](https://fenglin-1256754106.cos.ap-nanjing.myqcloud.com/bike5.1/IMG_8324.JPG)
-- ![千岛湖](https://fenglin-1256754106.cos.ap-nanjing.myqcloud.com/bike5.1/IMG_8326.JPG)
 
 环舟山:
-- ![舟山](https://fenglin-1256754106.cos.ap-nanjing.myqcloud.com/bike6.4/IMG_8342.JPG)
 - ![舟山](https://fenglin-1256754106.cos.ap-nanjing.myqcloud.com/bike6.4/IMG_8339.JPG)
 - ![舟山](https://fenglin-1256754106.cos.ap-nanjing.myqcloud.com/bike6.4/IMG_8340.JPG)
 
 骑杭州:
 - ![西湖](https://fenglin-1256754106.cos.ap-nanjing.myqcloud.com/bike6.11/IMG_8344.JPG)
 - ![西湖](https://fenglin-1256754106.cos.ap-nanjing.myqcloud.com/bike5.8/IMG_8329.JPG)
-- ![西湖](https://fenglin-1256754106.cos.ap-nanjing.myqcloud.com/bike4.23/IMG_8321.JPG)
