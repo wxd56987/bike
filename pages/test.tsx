@@ -25,6 +25,16 @@ const Test: FC = () => {
     })
   }
 
+  const testMongodb = () => {
+    axios({
+      method: 'get',
+      url: '/api/ttt',
+    }).then((e) => {
+      console.log(e.data)
+
+    })
+  }
+
   return (
     <div>
       <input type="file" accept="image/heic,image/jpg,image/png,image/gif" onChange={async (e) => {
@@ -54,6 +64,7 @@ const Test: FC = () => {
         }
       }} />
       <button onClick={getFile}>get</button>
+      <button onClick={testMongodb}>tset mongodb</button>
     </div>
   )
 }
