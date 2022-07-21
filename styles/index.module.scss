@@ -316,3 +316,55 @@
     }
   }
 }
+
+.web3 {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: #000;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+  .brand {
+    position: absolute;
+    left: 300px;
+    top: 200px;
+    .title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 70px;
+      line-height: 70px;
+      letter-spacing: -0.02em;
+      color: #fcfcfd;
+    }
+    .btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 292px;
+      height: 66px;
+      border-radius: 33px;
+      border: 1px solid #eee;
+      cursor: pointer;
+      margin-top: 60px;
+      p {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        text-align: center;
+        color: #e9e9ef;
+        margin-bottom: 0;
+      }
+    }
+  }
+  .circle {
+    position: absolute;
+    width: 375px;
+    height: 375px;
+    left: 800px;
+    top: 200px;
+
+    filter: drop-shadow(21px 40px 91px rgba(0, 0, 0, 0.25));
+    border-radius: 205px;
+    background-color: azure;
+  }
+}

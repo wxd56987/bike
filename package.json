@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NEXT_PUBLIC_DOMAIN_ENV=development next dev",
+    "dev": "NEXT_PUBLIC_DOMAIN_ENV=development PORT=3333 next dev",
     "build": "NEXT_PUBLIC_DOMAIN_ENV=production next build",
     "start": "NEXT_PUBLIC_DOMAIN_ENV=production next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@polkadot/extension-dapp": "^0.44.1",
+    "admeta-sdk": "^1.0.2",
     "antd": "^4.21.5",
     "axios": "^0.27.2",
     "cos-nodejs-sdk-v5": "^2.11.12",
