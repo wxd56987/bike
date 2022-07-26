@@ -158,14 +158,14 @@ const Map: NextPage<MapType> = ({ v }) => {
       </Head>
       <div className={styles.MAP}>
         <div className={styles.title}>风林火山骑行团 | NICE路线推荐</div>
-        <div className={styles.recommend}
+        {/* <div className={styles.recommend}
           onClick={() => {
             handleResetInfo()
             setIsModalVisible(true)
           }}
         >
           <div className={styles.btn}>一键推荐</div>
-        </div>
+        </div> */}
         <Modal
           title="上传地图"
           visible={isModalVisible}

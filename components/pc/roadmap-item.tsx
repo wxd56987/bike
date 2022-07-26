@@ -91,7 +91,7 @@ const RoadmapItem: FC<Props> = ({ folderItem, handleImgShow }) => {
             </div>
           ))
         }
-        {
+        {/* {
           !loading && imgList.length <= 18
             ?
             <Upload
@@ -99,7 +99,7 @@ const RoadmapItem: FC<Props> = ({ folderItem, handleImgShow }) => {
             />
             :
             null
-        }
+        } */}
 
       </div>
     </div>
