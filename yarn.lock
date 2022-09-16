@@ -708,10 +708,10 @@ acorn@^8.7.1:
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.7.1.tgz#0197122c843d1bf6d0a5e83220a788f278f63c30"
   integrity sha512-Xx54uLJQZ19lKygFXOWsscKUbsBZW0CPykPhVQdhIeIwrbPmJzqeASDInc8nKBnp/JT6igTs82qPXz069H8I/A==
 
-admeta-sdk@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/admeta-sdk/-/admeta-sdk-1.0.2.tgz#7d8df10b55b27ad31085acb58558c14fff5f734f"
-  integrity sha512-N/t++e9Kb6cova4pBSu0dO3/3RvVahD/qtPl6GOow3d4xOjd7Um7OwL291M5RlsKSGNuJDP0TvsO18Mo/Crbiw==
+admeta-sdk@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/admeta-sdk/-/admeta-sdk-1.0.3.tgz#92e831e5cd78e3a287f59927b0d94d75a7ec6f41"
+  integrity sha512-I+pmQ9n82CEfFPUkJti3Hf8Dqbb/lRsYGwqh4n2t+KdX64UC0mojJsxGsQeJK/OQnmJW6/l3AxbGRF7FfhKQtQ==
   dependencies:
     axios "^0.27.2"
 

@@ -4,21 +4,34 @@ import styles from '../styles/index.module.scss'
 import { Rodemap } from '../utils/types'
 import { useState } from 'react';
 import AdmetaSdk from 'admeta-sdk'
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const Web3: NextPage<Rodemap> = ({ v }) => {
   const [account, setAccount] = useState('')
+  const router = useRouter()
+  const { add, id } = router.query
   const handleOpenPlokadot = async () => {
-    if (account) {
-      return;
-    }
-    if (typeof window !== "undefined") {
-      const { web3Accounts, web3Enable } = await import('@polkadot/extension-dapp')
-      await web3Enable('AdMeta');
-      const allAccounts = await web3Accounts() as any[];
-      setAccount(allAccounts[0].address)
-      console.log(allAccounts)
-      new AdmetaSdk(allAccounts[0].address).init()
-    }
+    // if (account) {
+    //   return;
+    // }
+    // if (typeof window !== "undefined") {
+    //   const { web3Accounts, web3Enable } = await import('@polkadot/extension-dapp')
+    //   await web3Enable('AdMeta');
+    //   const allAccounts = await web3Accounts() as any[];
+    //   setAccount(allAccounts[0].address)
+    //   console.log(allAccounts)
+    //   new AdmetaSdk(allAccounts[0].address).init()
+    // }
+
+    // new AdmetaSdk('').init()
+    axios.post(`https://api.admeta.network/admeta/recordAdCompleted`, {
+      walletAddress: add,
+      advertisementId: id
+    }).then(() => {
+      router.push('https://app.admeta.network/ad-display?rd=23nqw343')
+    })
+    
   }
 
   const formatAddress = (address: string): string => {
@@ -44,7 +57,7 @@ const Web3: NextPage<Rodemap> = ({ v }) => {
             className={styles.btn}
             onClick={handleOpenPlokadot}
           >
-            <p>{account ? formatAddress(account) : 'Connect with Polkadot'}</p>
+            <p>Ad completed</p>
           </div>
         </div>
         <div className={styles.circle}></div>
