@@ -25,13 +25,16 @@ const Web3: NextPage<Rodemap> = ({ v }) => {
     // }
 
     // new AdmetaSdk('').init()
-    axios.post(`https://api.admeta.network/admeta/recordAdCompleted`, {
-      walletAddress: add,
-      advertisementId: id
-    }).then(() => {
+    if (add) {
+      axios.post(`https://api.admeta.network/admeta/recordAdCompleted`, {
+        walletAddress: add,
+        advertisementId: id
+      }).then(() => {
+        router.push('https://app.admeta.network/ad-display?rd=23nqw343')
+      })
+    } else {
       router.push('https://app.admeta.network/ad-display?rd=23nqw343')
-    })
-    
+    }
   }
 
   const formatAddress = (address: string): string => {
